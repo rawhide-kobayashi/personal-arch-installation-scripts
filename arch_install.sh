@@ -66,4 +66,4 @@ arch-chroot /mnt /install_part_2.sh $HOSTNAME
 
 rm /mnt/install_part_2.sh
 
-echo 'great success'
+reboot
