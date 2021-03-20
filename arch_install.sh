@@ -64,4 +64,6 @@ EOF
 chmod +x /mnt/install_part_2.sh
 arch-chroot /mnt /install_part_2.sh $HOSTNAME
 
+rm /mnt/install_part_2.sh
+
 echo 'great success'
