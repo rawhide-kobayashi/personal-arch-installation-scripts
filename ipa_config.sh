@@ -52,3 +52,6 @@ sed -i '1 a auth            sufficient      pam_sss.so' /etc/pam.d/sudo
 sed -i '1 a password        sufficient      pam_sss.so' /etc/pam.d/passwd
 
 sed -i '12 a ldap_sudo_search_base = ou=wheel,dc=gensoukyou,dc=neet,dc=works' /etc/sssd/sssd.conf
+
+passwd -d root
+reboot
