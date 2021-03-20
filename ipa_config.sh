@@ -1,5 +1,16 @@
 #!/bin/bash
 
+ADMINUSER=$1
+ADMINUSERPASS=$2
+
+sed -i '$ a \
+\
+Include = /etc/pacman.d/aurto' /etc/pacman.conf
+
+echo -e '[aurto]\nSigLevel = Optional TrustAll\nServer = http://satori.gensoukyou.neet.works/\$repo/\$arch\nServer = http://satori-ib.gensoukyou.neet.works/\$repo/\$arch' > /etc/pacman.d/aurto
+
+pacman -Sy chrony freeipa-client python-gssapi python-nss python-yubico yp-tools certmonger oddjob python-ipaclient python-ipalib
+
 mkdir /etc/krb5.conf.d
 ln -sf /usr/bin/true /usr/bin/authselect
 mkdir /etc/authselect
@@ -7,6 +18,15 @@ cp /etc/nsswitch.conf /etc/authselect/user-nsswitch.conf
 mkdir /usr/share/ipa/client
 mkdir -p /usr/share/ipa/client
 echo -e '[libdefaults]\n    spake_preauth_groups = edwards25519' > /usr/share/ipa/client/freeipa.template
+
+(
+echo y
+echo 0.north-america.pool.ntp.org,1.north-america.pool.ntp.org,2.north-america.pool.ntp.org,3.north-america.pool.ntp.org
+echo  
+echo y
+echo $ADMINUSER
+echo $ADMINUSERPASS
+) | ipa-client-intall --no-nisdomain
 
 sed -i '82s/.*/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
