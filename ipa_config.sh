@@ -15,7 +15,6 @@ mkdir /etc/krb5.conf.d
 ln -sf /usr/bin/true /usr/bin/authselect
 mkdir /etc/authselect
 cp /etc/nsswitch.conf /etc/authselect/user-nsswitch.conf
-mkdir /usr/share/ipa/client
 mkdir -p /usr/share/ipa/client
 echo -e '[libdefaults]\n    spake_preauth_groups = edwards25519' > /usr/share/ipa/client/freeipa.template
 
@@ -26,7 +25,7 @@ echo
 echo y
 echo $ADMINUSER
 echo $ADMINUSERPASS
-) | ipa-client-intall --no-nisdomain
+) | ipa-client-install --no-nisdomain
 
 sed -i '82s/.*/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
