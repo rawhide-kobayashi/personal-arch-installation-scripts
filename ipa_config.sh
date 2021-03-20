@@ -9,7 +9,7 @@ Include = /etc/pacman.d/aurto' /etc/pacman.conf
 
 echo -e '[aurto]\nSigLevel = Optional TrustAll\nServer = http://satori.gensoukyou.neet.works/$repo/$arch\nServer = http://satori-ib.gensoukyou.neet.works/$repo/$arch' > /etc/pacman.d/aurto
 
-pacman -Sy chrony freeipa-client python-gssapi python-nss python-yubico yp-tools certmonger oddjob python-ipaclient python-ipalib
+pacman -Sy --noconfirm chrony freeipa-client python-gssapi python-nss python-yubico yp-tools certmonger oddjob python-ipaclient python-ipalib
 
 mkdir /etc/krb5.conf.d
 ln -sf /usr/bin/true /usr/bin/authselect
@@ -24,6 +24,7 @@ echo 0.north-america.pool.ntp.org,1.north-america.pool.ntp.org,2.north-america.p
 echo  
 echo y
 echo $ADMINUSER
+echo $ADMINUSERPASS
 echo $ADMINUSERPASS
 ) | ipa-client-install --no-nisdomain
 
