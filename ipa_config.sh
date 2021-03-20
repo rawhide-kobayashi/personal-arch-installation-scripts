@@ -7,7 +7,7 @@ sed -i '$ a \
 \
 Include = /etc/pacman.d/aurto' /etc/pacman.conf
 
-echo -e '[aurto]\nSigLevel = Optional TrustAll\nServer = http://satori.gensoukyou.neet.works\$repo\$arch\nServer = http://satori-ib.gensoukyou.neet.works\$repo\$arch' > /etc/pacman.d/aurto
+echo -e '[aurto]\nSigLevel = Optional TrustAll\nServer = http://satori.gensoukyou.neet.works/$repo/$arch\nServer = http://satori-ib.gensoukyou.neet.works/$repo/$arch' > /etc/pacman.d/aurto
 
 pacman -Sy chrony freeipa-client python-gssapi python-nss python-yubico yp-tools certmonger oddjob python-ipaclient python-ipalib
 
