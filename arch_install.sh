@@ -51,6 +51,7 @@ netctl enable enp1s0
 systemctl enable sshd
 systemctl enable qemu-guest-agent
 systemctl enable spice-vdagent
+systemctl enable fstrim.timer
 
 (
 echo root
@@ -67,5 +68,6 @@ chmod +x /mnt/install_part_2.sh
 arch-chroot /mnt /install_part_2.sh $HOSTNAME
 
 rm /mnt/install_part_2.sh
+umount /mnt
 
 reboot
