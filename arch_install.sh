@@ -24,7 +24,7 @@ mkfs.xfs -f -b size=4k -s size=4k /dev/vda2
 
 mount /dev/vda2 /mnt
 
-pacstrap /mnt base linux-lts xfsprogs nano dhcpcd netctl sudo openssh grub
+pacstrap /mnt base linux-lts xfsprogs nano dhcpcd netctl sudo openssh grub qemu-guest-agent spice-vdagent
 
 genfstab -U /mnt >> /mnt/etc/fstab
 
@@ -49,6 +49,8 @@ echo -e "127.0.0.1 localhost\n::1       localhost\n127.0.1.1 ${HOSTNAME}.gensouk
 echo -e "Description='enp1s0 dhcp'\nInterface=enp1s0\nConnection=ethernet\nIP=dhcp\nDHCPClient=dhcpcd" > /etc/netctl/enp1s0
 netctl enable enp1s0
 systemctl enable sshd
+systemctl enable qemu-guest-agent
+systemctl enable spice-vdagent
 
 (
 echo root
