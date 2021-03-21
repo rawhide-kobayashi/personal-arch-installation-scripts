@@ -47,6 +47,7 @@ echo $HOSTNAME > /etc/hostname
 echo -e "127.0.0.1 localhost\n::1       localhost\n127.0.1.1 ${HOSTNAME}.gensoukyou.neet.works ${HOSTNAME}" > /etc/hosts
 
 echo -e "Description='enp1s0 dhcp'\nInterface=enp1s0\nConnection=ethernet\nIP=dhcp\nDHCPClient=dhcpcd" > /etc/netctl/enp1s0
+sed -i '8s/.*/hostname/' /etc/dhcpcd.conf
 netctl enable enp1s0
 systemctl enable sshd
 systemctl enable qemu-guest-agent
