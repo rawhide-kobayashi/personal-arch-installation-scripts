@@ -2,8 +2,8 @@
 
 just some scripts i use to setup arch vms and join them to freeipa
 
-curl https://git.io/JYEFV | bash -s -- [hostname]
+curl -L https://git.io/JYEFV | bash -s -- [hostname]
 
-curl https://git.io/JYEFy | bash -s -- [adminuser] [pass]
+curl -L https://git.io/JYEFy | bash -s -- [adminuser] [pass]
 
 
