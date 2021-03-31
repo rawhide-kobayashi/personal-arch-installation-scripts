@@ -18,15 +18,7 @@ cp /etc/nsswitch.conf /etc/authselect/user-nsswitch.conf
 mkdir -p /usr/share/ipa/client
 echo -e '[libdefaults]\n    spake_preauth_groups = edwards25519' > /usr/share/ipa/client/freeipa.template
 
-(
-echo y
-echo 0.north-america.pool.ntp.org,1.north-america.pool.ntp.org,2.north-america.pool.ntp.org,3.north-america.pool.ntp.org
-echo  
-echo y
-echo $ADMINUSER
-echo $ADMINUSERPASS
-echo $ADMINUSERPASS
-) | ipa-client-install --no-nisdomain
+ipa-client-install -U --no-nisdomain --ntp-server 1.north-america.pool.ntp.org --ntp-server 2.north-america.pool.ntp.org --ntp-server 0.north-america.pool.ntp.org --ntp-server 3.north-america.pool.ntp.org -p $ADMINUSER -w $ADMINUSERPASS
 
 sed -i '82s/.*/%wheel ALL=(ALL) ALL/' /etc/sudoers
 
